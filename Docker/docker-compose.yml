@@ -1,0 +1,44 @@
+version: '3.3'
+services: 
+  symfony:
+    network_mode: bridge
+    container_name: symfony
+    image: aaliapiblog:0.1
+    build:
+      context: ../api
+      dockerfile: Dockerfile
+    tty: true
+    command: -vvv server:run 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    volumes: 
+      - ../api:/var/www/default
+    environment: 
+      LD_PRELOAD: /usr/local/lib/faketime/libfaketime.so.1
+      FAKETIME: "${FAKETIME:-}"
+      SYMFONY_ENV: dev
+    external_links:
+      - sql
+    
+  angular:
+    network_mode: bridge
+    container_name: blogangular
+    image: angular/frontend:0.1
+    build:
+      context: ../blog
+      dockerfile: Dockerfile
+    command: serve --host 0.0.0.0
+    environment:
+      LD_PRELOAD: /usr/local/lib/faketime/libfaketime.so.1
+      FAKETIME_NO_CACHE: 1
+      FAKETIME: ${FAKETIME:-}
+    ports:
+      - 80:4200
+    volumes:
+      - ../blog:/home/node/app/
+    expose:
+      - 4200
+
+
+  
+        
