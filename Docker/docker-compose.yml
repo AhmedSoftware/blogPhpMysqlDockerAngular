@@ -6,7 +6,7 @@ services:
     image: aaliapiblog:0.1
     build:
       context: ../api
-      dockerfile: Dockerfile
+      dockerfile: ../api/Dockerfile
     tty: true
     command: -vvv server:run 0.0.0.0:8000
     ports:
