@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  blog:
+    network_mode: bridge
+    container_name: blog
+    image: aali/blog:v1
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: ["/bin/sh", "-c", " apache2-foreground"]
+    environment:
+      LD_PRELOAD: /usr/local/lib/faketime/libfaketime.so.1
+      FAKETIME_NO_CACHE: 1
+      FAKETIME: ${FAKETIME:-}
+    ports:
+      - "7012:80"
+    external_links:
+      - sql:sql
