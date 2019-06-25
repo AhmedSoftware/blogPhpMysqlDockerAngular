@@ -283,6 +283,9 @@
     "symfony/security-core": {
         "version": "v3.4.28"
     },
+    "symfony/security-csrf": {
+        "version": "v3.4.28"
+    },
     "symfony/templating": {
         "version": "v3.4.28"
     },
@@ -299,6 +302,23 @@
             "translations/.gitignore"
         ]
     },
+    "symfony/twig-bridge": {
+        "version": "v3.4.28"
+    },
+    "symfony/twig-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "369b5b29dc52b2c190002825ae7ec24ab6f962dd"
+        },
+        "files": [
+            "config/packages/twig.yaml",
+            "config/routes/dev/twig.yaml",
+            "templates/base.html.twig"
+        ]
+    },
     "symfony/validator": {
         "version": "v3.4.28"
     },
@@ -313,6 +333,9 @@
     },
     "symfony/yaml": {
         "version": "v3.4.28"
+    },
+    "twig/twig": {
+        "version": "v2.11.3"
     },
     "willdurand/jsonp-callback-validator": {
         "version": "v1.1.0"

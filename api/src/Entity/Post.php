@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
+ *
  */
 class Post
 {
@@ -13,40 +16,40 @@ class Post
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Serializer\Groups({"list"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Serializer\Groups({"list","detail"})
      */
     private $title;
 
     /**
-     * @ORM\Column(type="text", length=255)
+     * @ORM\Column(type="text")
+     *@Serializer\Groups({"list","detail"})
      */
     private $message;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
+     * @Serializer\Groups({"list","detail"})
      */
-    private $comment;
+    private $date;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Serializer\Groups({"list","detail"})
      */
-    private $toLike;
+    private $auteur;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $toDislike;
-
-    public function getId(): ?integer
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -58,7 +61,7 @@ class Post
         return $this;
     }
 
-    public function getMessage(): ?string
+    public function getMessage(): string
     {
         return $this->message;
     }
@@ -70,38 +73,27 @@ class Post
         return $this;
     }
 
-    public function getComment(): ?string
+    public function getDate(): \DateTimeInterface
     {
-        return $this->comment;
+        return $this->date;
     }
 
-    public function setComment(?string $comment): self
+    public function setDate(\DateTimeInterface $date): self
     {
-        $this->comment = $comment;
+        $this->date = $date;
 
         return $this;
     }
 
-    public function getToLike(): ?int
+    public function getAuteur(): int
     {
-        return $this->toLike;
+        return $this->auteur;
     }
 
-    public function setToLike(?int $toLike): self
+    public function setAuteur(
+        int $auteur): self
     {
-        $this->toLike = $toLike;
-
-        return $this;
-    }
-
-    public function getToDislike(): ?int
-    {
-        return $this->toDislike;
-    }
-
-    public function setToDislike(?int $toDislike): self
-    {
-        $this->toDislike = $toDislike;
+        $this->auteur = $auteur;
 
         return $this;
     }
