@@ -22,11 +22,7 @@ class PostListenner implements EventSubscriberInterface{
     }
 
     public static function onPostSerialize(ObjectEvent $event){
-        // Possibilité de récupérer l'objet qui a été sérialisé
-        $object = $event->getObject();
+        $visitor = $event->getVisitor();
 
-        $date = new \Datetime();
-        // Possibilité de modifier le tableau après sérialisation
-        $event->getVisitor()->addData('delivered_at', $date->format('l jS \of F Y h:i:s A'));
     }
 }
