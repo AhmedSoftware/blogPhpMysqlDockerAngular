@@ -7,9 +7,9 @@ doctrine:
                 host: sql
                 driver: 'pdo_mysql'
                 server_version: '5.7'
-                dbname: blog #intranet
-                user: root #root
-                password: osaxis2017 #pwd2change
+                dbname: blog 
+                user: root 
+                password: osaxis2017 
                 port: 3306
                 unix_socket: /var/run/mysqld/mysqld.sock
                 charset: utf8
